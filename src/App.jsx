@@ -6,6 +6,7 @@ function App() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [number, setNumber] = useState('');
+    const [response, setResponse] = useState("")
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -14,7 +15,9 @@ function App() {
               'Content-Type': 'application/json',
           };
           const response = await axios.post('https://connector-backend-2.onrender.com/connect', { email, password , number}, { headers });
+        //   const response = await axios.post('http://localhost:3000/connect', { email, password , number}, { headers });
           const data = response.data; // axios automatically parses the response
+          setResponse(data)
           console.log(data);
           setEmail("");
           setPassword("");
@@ -61,6 +64,11 @@ function App() {
                     <button type="submit">Connect</button>
                 </form>
             </header>
+            <div>
+                {
+                response?.message ? <p>Sending Requests ....</p> : <p>{response.message}</p>
+                }
+            </div>
         </div>
     );
 }
