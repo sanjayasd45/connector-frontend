@@ -13,7 +13,7 @@ function App() {
           const headers = {
               'Content-Type': 'application/json',
           };
-          const response = await axios.post('http://localhost:5000/connect', { email, password , number}, { headers });
+          const response = await axios.post('https://connector-backend-2.onrender.com/connect', { email, password , number}, { headers });
           const data = response.data; // axios automatically parses the response
           console.log(data);
           setEmail("");
